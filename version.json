@@ -1,5 +1,5 @@
 {
-  "versionCode": 6,
+  "versionCode": 5,
   "versionName": "0.0.0",
   "desc": "- 直播相关更新，UI调整，支持自定义直播源，数字按钮换台，直播页bug修改",
   "forcedUpgrade": false
