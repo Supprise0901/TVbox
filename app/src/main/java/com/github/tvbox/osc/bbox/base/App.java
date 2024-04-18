@@ -160,12 +160,10 @@ public class App extends MultiDexApplication {
         proxyUrlHistory.add("https://ghps.cc/");
         proxyUrlHistory.add("https://raw.bunnylblbblbl.eu.org/");
         // 默认线路地址
-        // String defaultApiName = "自备份线路";
-        // String defaultApi = url + URL.DEFAULT_API_URL;
+        String defaultApiName = "自备份线路";
+        String defaultApi = url + URL.DEFAULT_API_URL;
         // 默认仓库地址
         String defaultStoreApi = url + URL.DEFAULT_STORE_API_URL;
-        // 默认直播地址
-        // String defaultLiveUrl = url + URL.DEFAULT_LIVE_URL;
 
         Map<String, String> defaultApiMap = Hawk.get(HawkConfig.API_MAP, new HashMap<>());
         defaultApiMap.put(defaultApiName, defaultApi);
@@ -178,7 +176,7 @@ public class App extends MultiDexApplication {
         // putDefault(HawkConfig.API_NAME, defaultApiName);
         // putDefault(HawkConfig.API_NAME_HISTORY, defaultApiHistory);
         // putDefault(HawkConfig.API_MAP, defaultApiMap);
-        // putDefault(HawkConfig.DEFAULT_LIVE_URL, defaultLiveUrl);
+
         putDefault(HawkConfig.DEFAULT_STORE_API, defaultStoreApi);
         putDefault(HawkConfig.PROXY_URL_HISTORY, proxyUrlHistory);
     }
