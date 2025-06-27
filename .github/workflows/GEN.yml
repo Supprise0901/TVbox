@@ -1,51 +1,31 @@
 name: GENERATE APK
 
 on:
-  # push:
-  #   branches:
-  #     - main
-  # pull_request:
-  workflow_dispatch: # This allows manual triggering of the workflow
+  #  push:
+  #    branches:
+  #      - main
+  #  pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest # Runs on a fresh Ubuntu virtual machine
+    runs-on: ubuntu-latest
     steps:
-      # Step 1: Check out the repository code
-      - uses: actions/checkout@v4 # <<< Changed from v3 to v4
+      - uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # Fetches all history for the repository
-
-      # Step 2: Build the Android project using Gradle
+          fetch-depth: 0
       - name: Build With Gradle
         run: |
-          # Make the gradlew script executable
           chmod +x gradlew
-          # Run the Gradle assembleRelease task
-          # --build-cache: Uses build cache for faster builds
-          # --parallel: Allows parallel execution of tasks
-          # --daemon: Uses a Gradle daemon for faster subsequent builds
-          # --warning-mode all: Shows all warnings
-          ./gradlew assembleRelease --build-cache --parallel --daemon --warning-mode all
-
-      # Step 3: Prepare the generated APKs for upload
+          ./gradlew assemblerelease --build-cache --parallel --daemon --warning-mode all
       - name: Prepare App
         run: |
-          # Create a directory for APKs in the workflow workspace
           mkdir -p ${{ github.workspace }}/apk/
-          # Find all .apk files in the runner's home directory (where Gradle usually places them)
-          # and move them to the designated apk/ directory in the workspace.
-          # Note: The exact path for APKs might vary, common paths are
-          # app/build/outputs/apk/release/ or app/build/outputs/apk/debug/
-          # The 'find ~ -name "*.apk"' is a general approach.
           for file in `find ~ -name "*.apk" -print`; do
             mv "$file" ${{ github.workspace }}/apk/
           done
-
-      # Step 4: Upload the generated APKs as a workflow artifact
       - name: Upload App To Artifact
-        uses: actions/upload-artifact@v4 # <<< Changed from v3 to v4
+        uses: actions/upload-artifact@v3
         with:
-          name: box # The name of the artifact (how it will appear in GitHub Actions UI)
-          path: ${{ github.workspace }}/apk/* # The path to the APK files to upload
-          # retention-days: 7 # Optional: How many days to keep the artifact (default is 90 days for v4)
+          name: Panda_ʕ͡تʔ
+          path: ${{ github.workspace }}/apk/*
